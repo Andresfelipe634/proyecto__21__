@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Temporizador Pomodoro </title>
+    <meta name="author" content="Andres Felipe Estepa">
+    <meta name="description" content=" Temporizador Pomodoro ">
+    <meta property="og:title" content=" Temporizador Pomodoro Andres Felipe Estepa">
+    <meta property="og:url" content="https://andresfelipe634.github.io/proyecto__21__/">
+    <link rel="icon" href="icono.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="tema-trabajo">
+
+    <main class="contenedor-principal">
+        <!-- encabezado con el titulo y el contador de ciclos -->
+        <header class="cabecera-app">
+            <h1 class="titulo-app">Enfoque Pomodoro</h1>
+            <div class="insignia-sesiones" aria-live="polite">
+                Sesiones completadas: <span id="contador-sesiones" class="numero-destacado">0</span> / 4
+            </div>
+        </header>
+
+        <!-- pestañas pa cambiar manualmente entre trabajo y descansos -->
+        <nav class="selector-modos" role="tablist" aria-label="Tipo de sesión Pomodoro">
+            <button type="button" role="tab" id="tab-trabajo" class="boton-modo activo" data-modo="trabajo" aria-selected="true">
+                Trabajo
+            </button>
+            <button type="button" role="tab" id="tab-corto" class="boton-modo" data-modo="corto" aria-selected="false">
+                Descanso Corto
+            </button>
+            <button type="button" role="tab" id="tab-largo" class="boton-modo" data-modo="largo" aria-selected="false">
+                Descanso Largo
+            </button>
+        </nav>
+
+        <!-- caja central donde corre el reloj gigante -->
+        <section class="tarjeta-reloj" aria-label="Temporizador activo">
+            <p id="etiqueta-estado-actual" class="texto-estado">Sesión de Trabajo</p>
+            
+            <!-- el timer usa role timer pa que los lectores de pantalla lo entiendan -->
+            <div id="pantalla-reloj" class="numeros-reloj" role="timer" aria-live="off">
+                25:00
+            </div>
+
+            <!-- botones principales pa manejar el tiempo -->
+            <div class="grupo-botones-control">
+                <button type="button" id="boton-iniciar-pausar" class="boton-primario" aria-label="Iniciar o pausar temporizador">
+                    Iniciar
+                </button>
+                <button type="button" id="boton-reiniciar" class="boton-secundario" aria-label="Reiniciar tiempo actual">
+                    Reiniciar
+                </button>
+                <button type="button" id="boton-saltar" class="boton-secundario" aria-label="Saltar a la siguiente sesión">
+                    Siguiente
+                </button>
+            </div>
+            <p class="ayuda-teclado">Atajos: <strong>Espacio</strong> (Iniciar/Pausar) • <strong>R</strong> (Reiniciar)</p>
+        </section>
+
+        <!-- seccion pa que el usuario cambie los minutos por defecto -->
+        <section class="panel-configuracion" aria-labelledby="titulo-config">
+            <h2 id="titulo-config" class="subtitulo-config">Configurar tiempos (minutos)</h2>
+            
+            <form id="formulario-tiempos" class="rejilla-inputs">
+                <div class="grupo-campo">
+                    <label for="input-trabajo" class="etiqueta-campo">Trabajo</label>
+                    <input type="number" id="input-trabajo" class="entrada-minutos" value="25" min="1" max="120" required>
+                </div>
+
+                <div class="grupo-campo">
+                    <label for="input-corto" class="etiqueta-campo">Descanso corto</label>
+                    <input type="number" id="input-corto" class="entrada-minutos" value="5" min="1" max="60" required>
+                </div>
+
+                <div class="grupo-campo">
+                    <label for="input-largo" class="etiqueta-campo">Descanso largo</label>
+                    <input type="number" id="input-largo" class="entrada-minutos" value="15" min="1" max="90" required>
+                </div>
+
+                <button type="submit" class="boton-guardar">Aplicar</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

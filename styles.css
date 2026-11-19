@@ -1,0 +1,270 @@
+/* variables de color pa cambiar el tema facil segun si toca trabajar o descansar */
+:root {
+    --color-fondo: #0f172a;
+    --color-tarjeta: #1e293b;
+    --color-texto: #f8fafc;
+    --color-texto-suave: #94a3b8;
+    --color-acento: #10b981; /* verde esmeralda pa concentracion */
+    --color-acento-hover: #059669;
+    --borde-suave: #334155;
+}
+
+/* cuando pasa a descanso corto cambia a cian */
+body.tema-corto {
+    --color-acento: #06b6d4;
+    --color-acento-hover: #0891b2;
+}
+
+/* cuando pasa a descanso largo cambia a violeta */
+body.tema-largo {
+    --color-acento: #8b5cf6;
+    --color-acento-hover: #7c3aed;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.contenedor-principal {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* cabecera con flexbox pa separar titulo y contador */
+.cabecera-app {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.titulo-app {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.insignia-sesiones {
+    background-color: var(--color-tarjeta);
+    border: 1px solid var(--borde-suave);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: var(--color-texto-suave);
+}
+
+.numero-destacado {
+    color: var(--color-acento);
+    font-weight: 700;
+}
+
+/* barra de pestañas pa elegir modo */
+.selector-modos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: var(--color-tarjeta);
+    padding: 6px;
+    border-radius: 12px;
+    border: 1px solid var(--borde-suave);
+    gap: 6px;
+}
+
+.boton-modo {
+    background: transparent;
+    border: none;
+    color: var(--color-texto-suave);
+    padding: 10px 8px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.boton-modo:hover {
+    color: var(--color-texto);
+}
+
+/* pestaña seleccionada */
+.boton-modo.activo {
+    background-color: var(--color-acento);
+    color: #0f172a;
+}
+
+/* marco de foco visible pa accesibilidad con teclado (Tab) */
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid #facc15;
+    outline-offset: 2px;
+}
+
+/* tarjeta grande del temporizador */
+.tarjeta-reloj {
+    background-color: var(--color-tarjeta);
+    border: 2px solid var(--color-acento);
+    border-radius: 20px;
+    padding: 36px 24px;
+    text-align: center;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    transition: border-color 0.3s ease;
+}
+
+.texto-estado {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--color-acento);
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+/* numeros grandes del reloj con ancho fijo pa que no tiemblen al bajar los segundos */
+.numeros-reloj {
+    font-size: 5.2rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    margin: 16px 0 28px;
+}
+
+.grupo-botones-control {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.boton-primario {
+    background-color: var(--color-acento);
+    color: #0f172a;
+    border: none;
+    padding: 14px 32px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.boton-primario:hover {
+    background-color: var(--color-acento-hover);
+}
+
+.boton-primario:active {
+    transform: scale(0.97);
+}
+
+.boton-secundario {
+    background-color: transparent;
+    color: var(--color-texto);
+    border: 1.5px solid var(--borde-suave);
+    padding: 14px 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.boton-secundario:hover {
+    border-color: var(--color-texto-suave);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.ayuda-teclado {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    color: var(--color-texto-suave);
+}
+
+/* cajita inferior de ajustes */
+.panel-configuracion {
+    background-color: var(--color-tarjeta);
+    border: 1px solid var(--borde-suave);
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.subtitulo-config {
+    font-size: 0.95rem;
+    color: var(--color-texto-suave);
+    margin-bottom: 14px;
+}
+
+.rejilla-inputs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) auto;
+    gap: 10px;
+    align-items: end;
+}
+
+.grupo-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.etiqueta-campo {
+    font-size: 0.8rem;
+    color: var(--color-texto-suave);
+}
+
+.entrada-minutos {
+    width: 100%;
+    height: 40px;
+    background-color: var(--color-fondo);
+    border: 1px solid var(--borde-suave);
+    border-radius: 8px;
+    color: var(--color-texto);
+    padding: 0 10px;
+    font-size: 0.95rem;
+}
+
+.boton-guardar {
+    height: 40px;
+    padding: 0 16px;
+    background-color: #334155;
+    color: var(--color-texto);
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.boton-guardar:hover {
+    background-color: #475569;
+}
+
+/* ajustes pa pantallas pequeñas de celular */
+@media (max-width: 480px) {
+    .numeros-reloj {
+        font-size: 4rem;
+    }
+
+    .rejilla-inputs {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .boton-guardar {
+        grid-column: span 2;
+    }
+}
